@@ -182,8 +182,3 @@ cython_debug/
 
 # Local SSL/TLS artifacts
 security/*.key
-security/*.csr
-security/*.srl
-security/*.ext
-security/openssl.cnf
-security/*.crt
