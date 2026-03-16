@@ -1,31 +1,34 @@
 import socket
+import ssl
+from pathlib import Path
 
-HOST = "127.0.0.1"   # server address
-PORT = 5000          # server port
+HOST = "localhost"
+PORT = 5000
+
+SECURITY_DIR = Path(__file__).resolve().parents[1] / "security"
+CA_FILE = SECURITY_DIR / "ca.crt"
 
 
 def start_client():
-    # create socket
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    raw_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # connect to server
+    context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH, cafile=str(CA_FILE))
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+
+    client = context.wrap_socket(raw_socket, server_hostname=HOST)
     client.connect((HOST, PORT))
 
-    # receive welcome message
+    print(f"Connected with TLS cipher: {client.cipher()}")
+
     message = client.recv(1024)
     print(message.decode())
 
     while True:
-        # take input from user
         msg = input("Enter message (type 'quit' to exit): ")
-
         if msg.lower() == "quit":
             break
-
-        # send message to server
         client.send(msg.encode())
 
-    # close connection
     client.close()
 
 

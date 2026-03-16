@@ -179,3 +179,11 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Local SSL/TLS artifacts
+security/*.key
+security/*.csr
+security/*.srl
+security/*.ext
+security/openssl.cnf
+security/*.crt
