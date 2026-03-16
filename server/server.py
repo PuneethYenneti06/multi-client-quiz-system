@@ -41,20 +41,29 @@ def start_server():
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((HOST, PORT))
     server.listen()
+    server.settimeout(1.0)  # so accept() does not block forever
 
-    print("Secure quiz server running...")
+    print("Secure quiz server running... Press Ctrl+C to stop.")
+    try:
+        while True:
+            try:
+                raw_conn, addr = server.accept()
+            except socket.timeout:
+                continue
 
-    while True:
-        raw_conn, addr = server.accept()
-        try:
-            tls_conn = context.wrap_socket(raw_conn, server_side=True)
-        except ssl.SSLError as e:
-            print(f"TLS handshake failed from {addr}: {e}")
-            raw_conn.close()
-            continue
+            try:
+                tls_conn = context.wrap_socket(raw_conn, server_side=True)
+            except ssl.SSLError as e:
+                print(f"TLS handshake failed from {addr}: {e}")
+                raw_conn.close()
+                continue
 
-        thread = threading.Thread(target=handle_client, args=(tls_conn, addr), daemon=True)
-        thread.start()
+            thread = threading.Thread(target=handle_client, args=(tls_conn, addr), daemon=True)
+            thread.start()
+    except KeyboardInterrupt:
+        print("\nShutting down server...")
+    finally:
+        server.close()
 
-
-start_server()
+if __name__ == "__main__":
+    start_server()
