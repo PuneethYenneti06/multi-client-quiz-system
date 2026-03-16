@@ -8,8 +8,8 @@ PORT = 5000
 
 SECURITY_DIR = Path(__file__).resolve().parents[1] / "security"
 CA_FILE = SECURITY_DIR / "certs" / "ca.crt"
-CERT_FILE = SECURITY_DIR / "server.crt"
-KEY_FILE = SECURITY_DIR / "server.key"
+CERT_FILE = SECURITY_DIR / "certs" / "server.crt"
+KEY_FILE = SECURITY_DIR / "certs" / "server.key"
 
 
 def handle_client(conn, addr):
