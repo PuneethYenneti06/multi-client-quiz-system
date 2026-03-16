@@ -1,0 +1,81 @@
+Question,OptionA,OptionB,OptionC,OptionD,Correct
+"In Python, which data structure is immutable?",Set,List,Dictionary,Tuple,D
+"In Python, which data structure is immutable?",Tuple,List,Dictionary,Set,A
+Which of the following is a NoSQL database?,Oracle,PostgreSQL,MySQL,MongoDB,D
+Which of the following is a NoSQL database?,MySQL,MongoDB,PostgreSQL,Oracle,B
+What does a DNS server do?,Hosts web pages,Resolves domain names to IPs,Assigns IP addresses,Encrypts web traffic,B
+What port does HTTPS use by default?,21,443,80,22,B
+"In Python, which data structure is immutable?",List,Tuple,Set,Dictionary,B
+Which of the following is a NoSQL database?,Oracle,PostgreSQL,MySQL,MongoDB,D
+What does the 'S' in SOLID principles stand for?,Single Responsibility,Static Typing,Synchronous,Systematic,A
+Which of the following is a NoSQL database?,PostgreSQL,Oracle,MongoDB,MySQL,C
+Which HTTP status code represents 'Not Found'?,403,500,404,200,C
+What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Static Typing,Synchronous,B
+What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
+Which HTTP status code represents 'Not Found'?,200,404,403,500,B
+What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Static Typing,Synchronous,B
+Which SQL command is used to extract data from a database?,PULL,SELECT,GET,EXTRACT,B
+What is the time complexity of binary search?,O(n^2),O(log n),O(1),O(n),B
+Which of the following is a NoSQL database?,MySQL,PostgreSQL,Oracle,MongoDB,D
+What does a DNS server do?,Assigns IP addresses,Encrypts web traffic,Hosts web pages,Resolves domain names to IPs,D
+Which SQL command is used to extract data from a database?,GET,SELECT,EXTRACT,PULL,B
+What does the 'S' in SOLID principles stand for?,Single Responsibility,Static Typing,Synchronous,Systematic,A
+Which of the following is a NoSQL database?,MySQL,MongoDB,PostgreSQL,Oracle,B
+What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
+What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
+What does a DNS server do?,Assigns IP addresses,Resolves domain names to IPs,Hosts web pages,Encrypts web traffic,B
+Which of the following is a NoSQL database?,Oracle,MySQL,MongoDB,PostgreSQL,C
+What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Single Responsibility,Systematic,C
+Which protocol is used to send email?,SNMP,SMTP,POP3,FTP,B
+"In Python, which data structure is immutable?",Set,Tuple,List,Dictionary,B
+Which protocol is used to send email?,POP3,SNMP,FTP,SMTP,D
+What does a DNS server do?,Hosts web pages,Assigns IP addresses,Resolves domain names to IPs,Encrypts web traffic,C
+Which protocol is used to send email?,FTP,SMTP,POP3,SNMP,B
+Which HTTP status code represents 'Not Found'?,403,200,404,500,C
+Which SQL command is used to extract data from a database?,PULL,SELECT,GET,EXTRACT,B
+What is the time complexity of binary search?,O(1),O(n^2),O(n),O(log n),D
+Which HTTP status code represents 'Not Found'?,500,200,404,403,C
+What does a DNS server do?,Encrypts web traffic,Assigns IP addresses,Resolves domain names to IPs,Hosts web pages,C
+"In Python, which data structure is immutable?",Set,List,Dictionary,Tuple,D
+What does a DNS server do?,Hosts web pages,Assigns IP addresses,Encrypts web traffic,Resolves domain names to IPs,D
+Which HTTP status code represents 'Not Found'?,404,200,500,403,A
+Which HTTP status code represents 'Not Found'?,200,404,500,403,B
+Which HTTP status code represents 'Not Found'?,403,404,500,200,B
+"In Python, which data structure is immutable?",Dictionary,Set,List,Tuple,D
+"In Git, what command saves your compiled changes to the local repository?",git save,git add,git commit,git push,C
+Which SQL command is used to extract data from a database?,PULL,EXTRACT,GET,SELECT,D
+"In Python, which data structure is immutable?",Set,Dictionary,List,Tuple,D
+What port does HTTPS use by default?,80,22,443,21,C
+What port does HTTPS use by default?,22,443,21,80,B
+Which of the following is a NoSQL database?,PostgreSQL,Oracle,MongoDB,MySQL,C
+Which of the following is a NoSQL database?,PostgreSQL,MongoDB,MySQL,Oracle,B
+What does a DNS server do?,Encrypts web traffic,Resolves domain names to IPs,Assigns IP addresses,Hosts web pages,B
+What does the 'S' in SOLID principles stand for?,Synchronous,Systematic,Single Responsibility,Static Typing,C
+What is the time complexity of binary search?,O(1),O(n^2),O(log n),O(n),C
+Which HTTP status code represents 'Not Found'?,500,200,404,403,C
+What does the 'S' in SOLID principles stand for?,Static Typing,Systematic,Synchronous,Single Responsibility,D
+Which SQL command is used to extract data from a database?,SELECT,EXTRACT,PULL,GET,A
+Which protocol is used to send email?,SNMP,FTP,SMTP,POP3,C
+Which protocol is used to send email?,FTP,POP3,SMTP,SNMP,C
+Which of the following is a NoSQL database?,Oracle,MySQL,PostgreSQL,MongoDB,D
+What does a DNS server do?,Assigns IP addresses,Encrypts web traffic,Hosts web pages,Resolves domain names to IPs,D
+What does a DNS server do?,Resolves domain names to IPs,Hosts web pages,Assigns IP addresses,Encrypts web traffic,A
+What is the time complexity of binary search?,O(log n),O(1),O(n),O(n^2),A
+"In Git, what command saves your compiled changes to the local repository?",git push,git commit,git save,git add,B
+What is the time complexity of binary search?,O(n),O(1),O(log n),O(n^2),C
+Which HTTP status code represents 'Not Found'?,404,500,403,200,A
+Which HTTP status code represents 'Not Found'?,404,200,500,403,A
+Which HTTP status code represents 'Not Found'?,403,200,500,404,D
+What is the time complexity of binary search?,O(log n),O(n),O(1),O(n^2),A
+Which of the following is a NoSQL database?,MySQL,MongoDB,Oracle,PostgreSQL,B
+What does a DNS server do?,Assigns IP addresses,Hosts web pages,Encrypts web traffic,Resolves domain names to IPs,D
+Which of the following is a NoSQL database?,Oracle,PostgreSQL,MongoDB,MySQL,C
+What is the time complexity of binary search?,O(1),O(n),O(n^2),O(log n),D
+Which SQL command is used to extract data from a database?,EXTRACT,GET,SELECT,PULL,C
+Which HTTP status code represents 'Not Found'?,200,404,500,403,B
+"In Python, which data structure is immutable?",Dictionary,List,Set,Tuple,D
+Which protocol is used to send email?,FTP,POP3,SNMP,SMTP,D
+Which protocol is used to send email?,SMTP,FTP,POP3,SNMP,A
+"In Git, what command saves your compiled changes to the local repository?",git add,git push,git save,git commit,D
+What is the time complexity of binary search?,O(1),O(n),O(n^2),O(log n),D
+What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Synchronous,Static Typing,B
