@@ -7,6 +7,7 @@ HOST = "0.0.0.0"
 PORT = 5000
 
 SECURITY_DIR = Path(__file__).resolve().parents[1] / "security"
+CA_FILE = SECURITY_DIR / "certs" / "ca.crt"
 CERT_FILE = SECURITY_DIR / "server.crt"
 KEY_FILE = SECURITY_DIR / "server.key"
 
@@ -34,6 +35,7 @@ def start_server():
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.minimum_version = ssl.TLSVersion.TLSv1_2
     context.load_cert_chain(certfile=str(CERT_FILE), keyfile=str(KEY_FILE))
+    context.load_verify_locations(cafile=str(CA_FILE))
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

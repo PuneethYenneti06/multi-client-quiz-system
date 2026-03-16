@@ -6,7 +6,7 @@ HOST = "localhost"
 PORT = 5000
 
 SECURITY_DIR = Path(__file__).resolve().parents[1] / "security"
-CA_FILE = SECURITY_DIR / "ca.crt"
+CA_FILE = SECURITY_DIR / "certs" / "ca.crt"
 
 
 def start_client():
