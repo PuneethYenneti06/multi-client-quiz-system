@@ -2,7 +2,7 @@ import socket
 import ssl
 from pathlib import Path
 
-HOST = "localhost"
+HOST = "10.5.25.223"
 PORT = 5000
 
 SECURITY_DIR = Path(__file__).resolve().parents[1] / "security"
