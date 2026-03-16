@@ -35,7 +35,7 @@ def start_server():
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.minimum_version = ssl.TLSVersion.TLSv1_2
     context.load_cert_chain(certfile=str(CERT_FILE), keyfile=str(KEY_FILE))
-    context.load_verify_locations(cafile=str(CA_FILE))
+    context.verify_mode = ssl.CERT_NONE
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

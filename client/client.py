@@ -12,8 +12,9 @@ CA_FILE = SECURITY_DIR / "certs" / "ca.crt"
 def start_client():
     raw_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #Certificate Authority (CA)
-    context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH, cafile=str(CA_FILE))
-    context.minimum_version = ssl.TLSVersion.TLSv1_2
+    context = ssl.create_default_context()
+    context.check_hostname = False
+    context.verify_mode = ssl.CERT_NONE
 
     client = context.wrap_socket(raw_socket, server_hostname=HOST)
     client.connect((HOST, PORT))
