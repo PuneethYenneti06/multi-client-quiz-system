@@ -109,7 +109,7 @@ def quiz_loop():
             broadcast("\nQUESTION:\n" + question)
             print("Sent question")
 
-            time.sleep(10)
+            time.sleep(20)
 
             with lock:
                 for client, answer in answers.items():
