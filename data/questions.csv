@@ -1,81 +1,81 @@
 Question,OptionA,OptionB,OptionC,OptionD,Correct
 "In Python, which data structure is immutable?",Set,List,Dictionary,Tuple,D
-"In Python, which data structure is immutable?",Tuple,List,Dictionary,Set,A
 Which of the following is a NoSQL database?,Oracle,PostgreSQL,MySQL,MongoDB,D
-Which of the following is a NoSQL database?,MySQL,MongoDB,PostgreSQL,Oracle,B
 What does a DNS server do?,Hosts web pages,Resolves domain names to IPs,Assigns IP addresses,Encrypts web traffic,B
 What port does HTTPS use by default?,21,443,80,22,B
-"In Python, which data structure is immutable?",List,Tuple,Set,Dictionary,B
-Which of the following is a NoSQL database?,Oracle,PostgreSQL,MySQL,MongoDB,D
 What does the 'S' in SOLID principles stand for?,Single Responsibility,Static Typing,Synchronous,Systematic,A
-Which of the following is a NoSQL database?,PostgreSQL,Oracle,MongoDB,MySQL,C
 Which HTTP status code represents 'Not Found'?,403,500,404,200,C
-What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Static Typing,Synchronous,B
-What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
-Which HTTP status code represents 'Not Found'?,200,404,403,500,B
-What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Static Typing,Synchronous,B
 Which SQL command is used to extract data from a database?,PULL,SELECT,GET,EXTRACT,B
 What is the time complexity of binary search?,O(n^2),O(log n),O(1),O(n),B
-Which of the following is a NoSQL database?,MySQL,PostgreSQL,Oracle,MongoDB,D
-What does a DNS server do?,Assigns IP addresses,Encrypts web traffic,Hosts web pages,Resolves domain names to IPs,D
-Which SQL command is used to extract data from a database?,GET,SELECT,EXTRACT,PULL,B
-What does the 'S' in SOLID principles stand for?,Single Responsibility,Static Typing,Synchronous,Systematic,A
-Which of the following is a NoSQL database?,MySQL,MongoDB,PostgreSQL,Oracle,B
-What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
-What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Systematic,Single Responsibility,D
-What does a DNS server do?,Assigns IP addresses,Resolves domain names to IPs,Hosts web pages,Encrypts web traffic,B
-Which of the following is a NoSQL database?,Oracle,MySQL,MongoDB,PostgreSQL,C
-What does the 'S' in SOLID principles stand for?,Static Typing,Synchronous,Single Responsibility,Systematic,C
 Which protocol is used to send email?,SNMP,SMTP,POP3,FTP,B
-"In Python, which data structure is immutable?",Set,Tuple,List,Dictionary,B
-Which protocol is used to send email?,POP3,SNMP,FTP,SMTP,D
-What does a DNS server do?,Hosts web pages,Assigns IP addresses,Resolves domain names to IPs,Encrypts web traffic,C
-Which protocol is used to send email?,FTP,SMTP,POP3,SNMP,B
-Which HTTP status code represents 'Not Found'?,403,200,404,500,C
-Which SQL command is used to extract data from a database?,PULL,SELECT,GET,EXTRACT,B
-What is the time complexity of binary search?,O(1),O(n^2),O(n),O(log n),D
-Which HTTP status code represents 'Not Found'?,500,200,404,403,C
-What does a DNS server do?,Encrypts web traffic,Assigns IP addresses,Resolves domain names to IPs,Hosts web pages,C
-"In Python, which data structure is immutable?",Set,List,Dictionary,Tuple,D
-What does a DNS server do?,Hosts web pages,Assigns IP addresses,Encrypts web traffic,Resolves domain names to IPs,D
-Which HTTP status code represents 'Not Found'?,404,200,500,403,A
-Which HTTP status code represents 'Not Found'?,200,404,500,403,B
-Which HTTP status code represents 'Not Found'?,403,404,500,200,B
-"In Python, which data structure is immutable?",Dictionary,Set,List,Tuple,D
 "In Git, what command saves your compiled changes to the local repository?",git save,git add,git commit,git push,C
-Which SQL command is used to extract data from a database?,PULL,EXTRACT,GET,SELECT,D
-"In Python, which data structure is immutable?",Set,Dictionary,List,Tuple,D
-What port does HTTPS use by default?,80,22,443,21,C
-What port does HTTPS use by default?,22,443,21,80,B
-Which of the following is a NoSQL database?,PostgreSQL,Oracle,MongoDB,MySQL,C
-Which of the following is a NoSQL database?,PostgreSQL,MongoDB,MySQL,Oracle,B
-What does a DNS server do?,Encrypts web traffic,Resolves domain names to IPs,Assigns IP addresses,Hosts web pages,B
-What does the 'S' in SOLID principles stand for?,Synchronous,Systematic,Single Responsibility,Static Typing,C
-What is the time complexity of binary search?,O(1),O(n^2),O(log n),O(n),C
-Which HTTP status code represents 'Not Found'?,500,200,404,403,C
-What does the 'S' in SOLID principles stand for?,Static Typing,Systematic,Synchronous,Single Responsibility,D
-Which SQL command is used to extract data from a database?,SELECT,EXTRACT,PULL,GET,A
-Which protocol is used to send email?,SNMP,FTP,SMTP,POP3,C
-Which protocol is used to send email?,FTP,POP3,SMTP,SNMP,C
-Which of the following is a NoSQL database?,Oracle,MySQL,PostgreSQL,MongoDB,D
-What does a DNS server do?,Assigns IP addresses,Encrypts web traffic,Hosts web pages,Resolves domain names to IPs,D
-What does a DNS server do?,Resolves domain names to IPs,Hosts web pages,Assigns IP addresses,Encrypts web traffic,A
-What is the time complexity of binary search?,O(log n),O(1),O(n),O(n^2),A
-"In Git, what command saves your compiled changes to the local repository?",git push,git commit,git save,git add,B
-What is the time complexity of binary search?,O(n),O(1),O(log n),O(n^2),C
-Which HTTP status code represents 'Not Found'?,404,500,403,200,A
-Which HTTP status code represents 'Not Found'?,404,200,500,403,A
-Which HTTP status code represents 'Not Found'?,403,200,500,404,D
-What is the time complexity of binary search?,O(log n),O(n),O(1),O(n^2),A
-Which of the following is a NoSQL database?,MySQL,MongoDB,Oracle,PostgreSQL,B
-What does a DNS server do?,Assigns IP addresses,Hosts web pages,Encrypts web traffic,Resolves domain names to IPs,D
-Which of the following is a NoSQL database?,Oracle,PostgreSQL,MongoDB,MySQL,C
-What is the time complexity of binary search?,O(1),O(n),O(n^2),O(log n),D
-Which SQL command is used to extract data from a database?,EXTRACT,GET,SELECT,PULL,C
-Which HTTP status code represents 'Not Found'?,200,404,500,403,B
-"In Python, which data structure is immutable?",Dictionary,List,Set,Tuple,D
-Which protocol is used to send email?,FTP,POP3,SNMP,SMTP,D
-Which protocol is used to send email?,SMTP,FTP,POP3,SNMP,A
-"In Git, what command saves your compiled changes to the local repository?",git add,git push,git save,git commit,D
-What is the time complexity of binary search?,O(1),O(n),O(n^2),O(log n),D
-What does the 'S' in SOLID principles stand for?,Systematic,Single Responsibility,Synchronous,Static Typing,B
+What does HTTP stand for?,HyperText Transfer Protocol,HighText Transfer Protocol,Hyper Transfer Text Protocol,HyperText Transmission Protocol,A
+Which OSI layer is responsible for routing?,Data Link,Transport,Network,Physical,C
+"In C++, what is the size of an int variable on a standard 32-bit system?",2 bytes,4 bytes,8 bytes,1 byte,B
+What is the primary function of an Operating System?,Compiling code,Resource Management,Web browsing,Database management,B
+Which data structure uses the LIFO principle?,Queue,Tree,Graph,Stack,D
+Which data structure uses the FIFO principle?,Stack,Queue,Array,Tree,B
+What does SQL stand for?,Strong Question Language,Structured Query Language,Simple Query Language,Sequential Query Language,B
+What is the default port for SSH?,21,22,23,80,B
+What is the default port for HTTP?,80,443,22,21,A
+What does IP stand for?,Internet Protocol,Internal Protocol,Internet Provider,Intranet Protocol,A
+Which keyword is used to define a function in Python?,func,function,def,define,C
+Which of these is NOT an access modifier in Java?,public,private,hidden,protected,C
+What does CSS stand for?,Computer Style Sheets,Cascading Style Sheets,Creative Style Sheets,Colorful Style Sheets,B
+What is considered the brain of the computer?,RAM,Hard Drive,Motherboard,CPU,D
+"In OOP, what is the concept of hiding internal state?",Polymorphism,Inheritance,Encapsulation,Abstraction,C
+What is the maximum length of an IPv4 address?,16 bits,32 bits,64 bits,128 bits,B
+What is the maximum length of an IPv6 address?,32 bits,64 bits,128 bits,256 bits,C
+Which protocol dynamically assigns IP addresses to network devices?,DNS,DHCP,FTP,ARP,B
+What does JSON stand for?,Java Standard Output Network,JavaScript Object Notation,JavaScript Oriented Notation,Java Source Open Network,B
+Which property ensures database transactions are reliably processed?,SOLID,DRY,ACID,BASE,C
+What is the output of '2 ** 3' in Python?,6,8,9,16,B
+Which algorithm is used for finding the shortest path in a graph?,Binary Search,Dijkstra's Algorithm,Merge Sort,Depth First Search,B
+Which sorting algorithm has a worst-case time complexity of O(n^2)?,Merge Sort,Heap Sort,Bubble Sort,Radix Sort,C
+What is a primary key in a database?,A key used for encryption,A foreign key,A unique identifier for a record,A secondary index,C
+"In Java, which keyword is used to inherit a class?",implements,extends,inherits,super,B
+What is a foreign key in SQL?,A key used to access external APIs,A key linking two tables,A key that cannot be null,A backup primary key,B
+Which symbol is used to start a single-line comment in Python?,//,/*,<!--,#,D
+Which network topology connects all nodes to a single central hub?,Ring,Bus,Star,Mesh,C
+What does RAM stand for?,Read Access Memory,Random Access Memory,Run Access Memory,Remote Access Memory,B
+Which of the following is a backend JavaScript runtime environment?,React,Angular,Node.js,Vue,C
+What does TCP stand for?,Transmission Control Protocol,Transfer Control Protocol,Transmission Communication Protocol,Transfer Communication Protocol,A
+Which of the following is a connectionless transport layer protocol?,TCP,HTTP,UDP,FTP,C
+What does API stand for?,Application Programming Interface,Advanced Programming Interface,Application Process Interface,Automated Programming Interface,A
+Which Linux command is used to list directory contents?,cd,pwd,ls,mkdir,C
+What symbol denotes the root directory in a Linux file system?,~,/,\\,C:,B
+Which HTML tag creates the largest heading?,<head>,<h6>,<header>,<h1>,D
+What does MAC address stand for?,Machine Access Code,Media Access Control,Main Access Control,Micro Access Code,B
+How many bits make up one byte?,4,8,16,32,B
+Which of these is an example of an interpreted programming language?,C,C++,Python,Rust,C
+What does LAN stand for?,Large Area Network,Local Area Network,Logical Area Network,Linked Area Network,B
+Which logic gate outputs TRUE only if both inputs are TRUE?,OR,NOT,XOR,AND,D
+What is the standard file extension for a Python script?,.pt,.pyth,.py,.p,C
+Which Python method adds an item to the end of a list?,insert(),add(),push(),append(),D
+What does OOP stand for?,Object-Oriented Programming,Objective-Oriented Programming,Object-Original Programming,Oriented-Object Programming,A
+"In SQL, which clause is used to filter records?",SELECT,ORDER BY,WHERE,GROUP BY,C
+Which design pattern ensures only one instance of a class is created?,Factory,Observer,Singleton,Decorator,C
+What is the process of finding and fixing software bugs called?,Compiling,Debugging,Executing,Deploying,B
+Which data structure is best suited for hierarchical data representation?,Array,Stack,Tree,Queue,C
+What does SSL stand for?,Secure Sockets Layer,System Security Layer,Secure System Layer,Standard Sockets Layer,A
+What port does FTP use for its control connection by default?,20,21,22,23,B
+What command initializes a new local Git repository?,git start,git create,git new,git init,D
+What is the output of 'print(type([]))' in Python?,<class 'dict'>,<class 'set'>,<class 'list'>,<class 'tuple'>,C
+Which AWS service is primarily used for object storage?,EC2,RDS,Lambda,S3,D
+What does IDE stand for?,Internal Development Environment,Integrated Design Environment,Integrated Development Environment,Interactive Development Environment,C
+Which of these is a valid private IPv4 address?,8.8.8.8,192.168.1.1,256.0.0.1,127.0.0.1,B
+"In Linux, what command is used to change directories?",ls,pwd,cd,mv,C
+Which HTML tag is used to define a hyperlink?,<link>,<a>,<href>,<nav>,B
+What is the average time complexity of a hash table lookup?,O(1),O(n),O(log n),O(n^2),A
+Which of the following is NOT part of the ACID properties?,Atomicity,Consistency,Isolation,Distributed,D
+What does XML stand for?,eXtensible Markup Language,eXtra Modern Language,eXecutable Markup Language,eXamine Markup Language,A
+Which of the following is Microsoft's cloud computing platform?,AWS,GCP,Azure,DigitalOcean,C
+What does GUI stand for?,General User Interface,Graphical User Interface,Guided User Interface,Global User Interface,B
+Which network device primarily operates at the Network layer (Layer 3) of the OSI model?,Switch,Hub,Router,Repeater,C
+What is the file extension for a compiled Java class?,.java,.jar,.class,.jvm,C
+Which of these is a popular version control system?,Docker,Jenkins,Kubernetes,Git,D
+What is the primary purpose of the 'ping' command?,To download files,To test network reachability,To compile code,To securely log into a server,B
+Which encryption method uses a pair of public and private keys?,Symmetric,Hashing,Asymmetric,Encoding,C
+What does VPN stand for?,Virtual Public Network,Virtual Private Network,Visual Private Network,Verified Public Network,B
+Which programming language is designated by Google as the preferred language for Android app development?,Swift,Objective-C,Kotlin,Ruby,C
+"In OS concepts, what occurs when two processes are each waiting for the other to release a resource?",Race Condition,Mutex,Semaphore,Deadlock,D
