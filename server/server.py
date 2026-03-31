@@ -297,12 +297,27 @@ class QuizServer:
             if interrupted:
                 continue
 
-            # Evaluate Scores
+            # Evaluate scores + send per-client result
             with self.lock:
-                for client, answer in self.answers.items():
-                    if answer == correct_answer:
+                for client in list(self.clients):
+                    chosen = self.answers.get(client, "-")  # "-" means no answer
+                    is_correct = (chosen == correct_answer)
+
+                    if is_correct:
                         self.scores[client] += 10
-            
+
+                    if chosen == "-":
+                        status = "NO_ANSWER"
+                    elif is_correct:
+                        status = "CORRECT"
+                    else:
+                        status = "WRONG"
+
+                    try:
+                        client.send(f"RESULT|{status}|{chosen}|{correct_answer}\n".encode())
+                    except:
+                        pass
+
             self.update_live_leaderboard()
 
             # 5-Second Reveal

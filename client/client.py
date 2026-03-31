@@ -57,6 +57,7 @@ class QuizClient:
         self.timer_mode = "question"
         
         self.client_socket = None
+        self.selected_answer = None
         self.connect_to_server()
 
     def quit_app(self):
@@ -118,6 +119,43 @@ class QuizClient:
                 break
 
     def process_message(self, message):
+        # 1) Personalized result first
+        if "RESULT|" in message:
+            result_line = None
+            for line in message.splitlines():
+                if line.startswith("RESULT|"):
+                    result_line = line.strip()
+                    break
+
+            if result_line:
+                payload = result_line.split("|")
+                if len(payload) >= 4:
+                    status = payload[1].strip()
+                    your_ans = payload[2].strip()
+                    correct_ans = payload[3].strip()
+
+                    if status == "CORRECT":
+                        self.feedback_label.config(
+                            text=f"Correct. The correct answer is {correct_ans}",
+                            fg="#28a745"
+                        )
+                    elif status == "WRONG":
+                        self.feedback_label.config(
+                            text=f"Wrong. The correct answer is {correct_ans}",
+                            fg="#d9534f"
+                        )
+                    else:
+                        self.feedback_label.config(
+                            text=f"No answer submitted. The correct answer is {correct_ans}",
+                            fg="#ff9800"
+                        )
+                self.disable_buttons()
+                self.start_local_timer(5, "reveal")
+                return
+
+        
+
+        # 3) QUESTION
         if "QUESTION|" in message:
             parts = message.split(":\n", 1)
             header = parts[0]
@@ -133,12 +171,7 @@ class QuizClient:
             self.enable_buttons()
             self.start_local_timer(time_limit, "question")
             
-        elif "CORRECT_ANSWER:" in message:
-            ans = message.split("CORRECT_ANSWER:")[1].strip()
-            self.feedback_label.config(text=f"Time's up! Correct Answer: {ans}", fg="#28a745")
-            self.disable_buttons()
-            self.start_local_timer(5, "reveal") 
-            
+        # 4) LEADERBOARD
         elif "LEADERBOARD" in message:
             self.update_display(message)
             self.disable_buttons()
@@ -146,6 +179,7 @@ class QuizClient:
                 self.root.after_cancel(self.timer_id)
             self.timer_label.config(text="Leaderboard", fg="#007bff")
             
+        # 5) WAITING
         elif "WAITING" in message:
             self.update_display(message)
             self.disable_buttons()
@@ -153,6 +187,7 @@ class QuizClient:
                 self.root.after_cancel(self.timer_id)
             self.timer_label.config(text="Get Ready", fg="#007bff")
 
+        # 6) QUIZ_ENDED
         elif "QUIZ_ENDED" in message:
             self.update_display("\n\n--- QUIZ ENDED ---\n\nThe quiz has officially concluded. Thank you for playing!")
             self.feedback_label.config(text="Quiz Ended", fg="red")
