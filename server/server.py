@@ -4,10 +4,10 @@ import ssl
 import csv
 import time
 import random
-import sys
 import tkinter as tk
 from tkinter import messagebox
 from pathlib import Path
+import json  
 
 HOST = "0.0.0.0"
 PORT = 5000
@@ -31,6 +31,9 @@ class QuizServer:
         self.player_ids = {}
         self.next_player_id = 1
         
+        # Dictionary to store latency lists per client
+        self.client_latencies = {}
+                
         self.lock = threading.Lock()
         
         # Admin Control Flags
@@ -190,11 +193,9 @@ class QuizServer:
                     # Sort scores descending
                     sorted_scores = sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
                     
-                    # --- REPLACE THE FOR LOOP WITH THIS: ---
                     for client, score in sorted_scores:
                         p_name = self.player_ids.get(client, "Unknown")
                         text += f"{p_name}: {score} pts\n\n"
-                    # ---------------------------------------
                 
                 if not text:
                     text = "No players yet."
@@ -265,9 +266,34 @@ class QuizServer:
                 data = conn.recv(1024)
                 if not data:
                     break
-                answer = data.decode().strip().upper()
-                with self.lock:
-                    self.answers[conn] = answer
+                
+                raw_message = data.decode().strip()
+                server_recv_time = time.time()
+                
+                # Expected format from client: "ANSWER|<client_timestamp>|<A, B, C, or D>"
+                if raw_message.startswith("ANSWER|"):
+                    parts = raw_message.split("|")
+                    if len(parts) >= 3:
+                        try:
+                            client_sent_time = float(parts[1])
+                            answer = parts[2].upper()
+                            # Multiply by 1000 to convert to milliseconds
+                            latency = (server_recv_time - client_sent_time) * 1000
+                            
+                            with self.lock:
+                                self.answers[conn] = answer
+                                if conn not in self.client_latencies:
+                                    self.client_latencies[conn] = []
+                                self.client_latencies[conn].append(latency)
+                        except ValueError:
+                            # Fallback if timestamp parsing fails
+                            with self.lock:
+                                self.answers[conn] = parts[-1].upper()
+                else: 
+                    # Fallback for old clients
+                    answer = raw_message.upper()
+                    with self.lock:
+                        self.answers[conn] = answer
             except:
                 break
 
@@ -279,6 +305,10 @@ class QuizServer:
             # Clean up the ID when they leave
             if conn in self.player_ids:
                 del self.player_ids[conn]
+            # Clean up latency data ---
+            if conn in self.client_latencies:
+                del self.client_latencies[conn]
+
         
         self.update_lobby_display()
         self.update_live_leaderboard()
@@ -300,7 +330,9 @@ class QuizServer:
             self.answers.clear()
             
             # Broadcast to clients & update local Spectator View
-            self.broadcast(f"\nQUESTION|{self.question_timer}:\n" + question)
+            server_timestamp = time.time()
+            self.broadcast(f"\nQUESTION|{self.question_timer}|{server_timestamp}:\n" + question)
+            
             self.update_gui_spectator(question, "")
 
             interrupted = False
@@ -336,6 +368,44 @@ class QuizServer:
                         pass
 
             self.update_live_leaderboard()
+            
+            # Evaluate and Log Latencies 
+            print(f"\n--- Latency Stats for Question {self.q_idx + 1} ---")
+            stats_to_save = {}
+            with self.lock:
+                for client, latencies in self.client_latencies.items():
+                    p_name = self.player_ids.get(client, "Unknown")
+                    if latencies:
+                        avg_lat = sum(latencies) / len(latencies)
+                        max_lat = max(latencies)
+                        min_lat = min(latencies)
+                        
+                        # Change .4fs to .2fms
+                        log_msg = f"{p_name}: Avg={avg_lat:.2f}ms, Max={max_lat:.2f}ms, Min={min_lat:.2f}ms (Samples={len(latencies)})"
+                        print(log_msg)
+                        
+                        stats_to_save[p_name] = {
+                            "avg_latency_ms": avg_lat,
+                            "max_latency_ms": max_lat,
+                            "min_latency_ms": min_lat,
+                            "samples": len(latencies)
+                        }
+                        
+                        # Clear latencies for the next question if you want per-question stats
+                        # latencies.clear() 
+                    else:
+                        print(f"{p_name}: No latency data this round.")
+
+            # Save to JSON
+            if stats_to_save:
+                docs_dir = Path(__file__).resolve().parents[1] / "docs"
+                docs_dir.mkdir(exist_ok=True)
+                perf_file = docs_dir / "performance.json"
+                try:
+                    with open(perf_file, "w") as f:
+                        json.dump(stats_to_save, f, indent=4)
+                except Exception as e:
+                    print(f"Error saving performance data: {e}")
 
             # 5-Second Reveal
             self.broadcast(f"CORRECT_ANSWER: {correct_answer}")

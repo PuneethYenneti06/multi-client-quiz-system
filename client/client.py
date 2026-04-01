@@ -4,6 +4,7 @@ import threading
 import tkinter as tk
 import sys
 from pathlib import Path
+import time
 
 # HOST = "10.5.25.223"
 HOST = "127.0.0.1"
@@ -180,10 +181,21 @@ class QuizClient:
             header = parts[0]
             q_text = parts[1] if len(parts) > 1 else ""
             
+            header_parts = header.split("|")
             try:
-                time_limit = int(header.split("|")[1])
+                time_limit = int(header_parts[1])
             except:
                 time_limit = 20 
+
+            # Extract timestamp and compute latency
+            if len(header_parts) >= 3:
+                try:
+                    server_timestamp = float(header_parts[2])
+                    current_time = time.time()
+                    latency_ms = (current_time - server_timestamp) * 1000
+                    print(f"Latency: {latency_ms:.2f} ms")
+                except ValueError:
+                    pass
                 
             self.update_display("QUESTION:\n" + q_text)
             self.feedback_label.config(text="Select your answer!", fg="black")
@@ -219,9 +231,13 @@ class QuizClient:
             self.update_display(message)
 
     def send_answer(self, choice):
+        
         if self.client_socket:
-            try:
-                self.client_socket.send(choice.encode())
+            try:                
+                timestamp = time.time()
+                message = f"ANSWER|{timestamp}|{choice}"
+                
+                self.client_socket.send(message.encode())
                 self.feedback_label.config(text=f"Answer locked in: {choice}", fg="blue")
                 self.disable_buttons() 
             except Exception as e:
