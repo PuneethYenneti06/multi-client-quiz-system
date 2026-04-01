@@ -278,7 +278,7 @@ class QuizServer:
                             client_sent_time = float(parts[1])
                             answer = parts[2].upper()
                             # Multiply by 1000 to convert to milliseconds
-                            latency = (server_recv_time - client_sent_time) * 1000
+                            latency = abs(server_recv_time - client_sent_time) * 1000
                             
                             with self.lock:
                                 self.answers[conn] = answer
