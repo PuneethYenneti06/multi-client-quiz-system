@@ -16,7 +16,7 @@ CA_FILE = SECURITY_DIR / "certs" / "ca.crt"
 class QuizClient:
     def __init__(self, root):
         self.root = root
-        self.root.title("Secure Quiz Client")
+        self.root.title("Quiz Client")
         self.root.geometry("600x550")
         self.root.configure(bg="#ffffff")
 
@@ -119,6 +119,25 @@ class QuizClient:
                 break
 
     def process_message(self, message):
+        
+        if "YOU_ARE|" in message:
+            display_lines = []
+            for line in message.splitlines():
+                if line.startswith("YOU_ARE|"):
+                    player_id = line.split("|")[1].strip()
+                    # Update window title and header text dynamically
+                    self.root.title(f"Secure Quiz Client - {player_id}")
+                    self.header.config(text=f"Secure TLS Quiz - {player_id}")
+                else:
+                    display_lines.append(line)
+            
+            # Reconstruct the message without the hidden instruction
+            message = "\n".join(display_lines)
+            
+            # If everything was stripped out, don't keep processing
+            if not message.strip():
+                return
+
         # 1) Personalized result first
         if "RESULT|" in message:
             result_line = None

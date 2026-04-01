@@ -20,13 +20,17 @@ DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "questions.csv"
 class QuizServer:
     def __init__(self, root):
         self.root = root
-        self.root.title("Secure Quiz Server - Live Spectator Dashboard")
+        self.root.title("Quiz Server - Live Spectator Dashboard")
         self.root.geometry("800x650")
         self.root.configure(bg="#ffffff")
 
         self.clients = []
         self.scores = {}
         self.answers = {}
+        
+        self.player_ids = {}
+        self.next_player_id = 1
+        
         self.lock = threading.Lock()
         
         # Admin Control Flags
@@ -51,9 +55,8 @@ class QuizServer:
         # Build the initial Setup GUI
         self.build_setup_gui()
 
-    # ==========================================
+    
     # GUI BUILDERS
-    # ==========================================
     def build_setup_gui(self):
         """Draws the initial Setup Wizard screen."""
         self.setup_frame = tk.Frame(self.root, bg="#ffffff")
@@ -158,9 +161,8 @@ class QuizServer:
                                  bg="#d9534f", fg="white", width=20, command=self.revert_to_setup)
         self.end_btn.pack(pady=10)
 
-    # ==========================================
     # THREAD-SAFE GUI UPDATERS
-    # ==========================================
+
     def update_gui_timer(self, text, color="black"):
         def _update():
             if hasattr(self, 'timer_label') and self.timer_label.winfo_exists():
@@ -187,8 +189,12 @@ class QuizServer:
                 with self.lock:
                     # Sort scores descending
                     sorted_scores = sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
-                    for i, (client, score) in enumerate(sorted_scores):
-                        text += f"Player {i+1}: {score} pts\n\n"
+                    
+                    # --- REPLACE THE FOR LOOP WITH THIS: ---
+                    for client, score in sorted_scores:
+                        p_name = self.player_ids.get(client, "Unknown")
+                        text += f"{p_name}: {score} pts\n\n"
+                    # ---------------------------------------
                 
                 if not text:
                     text = "No players yet."
@@ -206,9 +212,8 @@ class QuizServer:
             
         self.build_setup_gui()
 
-    # ==========================================
+    
     # NETWORKING & GAME LOGIC
-    # ==========================================
     def load_questions(self):
         questions = []
         try:
@@ -241,10 +246,19 @@ class QuizServer:
         with self.lock:
             self.clients.append(conn)
             self.scores[conn] = 0
+            
+            # Assign a permanent player ID 
+            p_name = f"Player {self.next_player_id}"
+            self.player_ids[conn] = p_name
+            self.next_player_id += 1
+            
         
         self.update_lobby_display()
         self.update_live_leaderboard()
-        conn.send("Welcome to the Secure Quiz Server\n".encode())
+        
+        #  Send the welcome message AND the assigned ID
+        conn.send(f"Welcome to the Secure Quiz Server\nYOU_ARE|{p_name}\n".encode())
+        
 
         while True:
             try:
@@ -262,6 +276,9 @@ class QuizServer:
                 self.clients.remove(conn)
             if conn in self.scores:
                 del self.scores[conn]
+            # Clean up the ID when they leave
+            if conn in self.player_ids:
+                del self.player_ids[conn]
         
         self.update_lobby_display()
         self.update_live_leaderboard()
@@ -348,8 +365,12 @@ class QuizServer:
         with self.lock:
             # Sort scores descending
             sorted_scores = sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
-            for i, (client, score) in enumerate(sorted_scores):
-                leaderboard += f"Player {i+1}: {score} pts\n"
+            
+            for client, score in sorted_scores:
+                p_name = self.player_ids.get(client, "Unknown")
+                leaderboard += f"{p_name}: {score} pts\n"
+            
+            
         leaderboard += "-------------------\n"
 
         self.broadcast("LEADERBOARD\n" + leaderboard)
