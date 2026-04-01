@@ -372,15 +372,19 @@ class QuizServer:
             # Evaluate and Log Latencies 
             print(f"\n--- Latency Stats for Question {self.q_idx + 1} ---")
             stats_to_save = {}
+            fairness_data = {}  # Store fairness metrics
+            
             with self.lock:
+                client_avgs = []  # Collect averages across all clients
+                
                 for client, latencies in self.client_latencies.items():
                     p_name = self.player_ids.get(client, "Unknown")
                     if latencies:
                         avg_lat = sum(latencies) / len(latencies)
+                        client_avgs.append(avg_lat)
                         max_lat = max(latencies)
                         min_lat = min(latencies)
                         
-                        # Change .4fs to .2fms
                         log_msg = f"{p_name}: Avg={avg_lat:.2f}ms, Max={max_lat:.2f}ms, Min={min_lat:.2f}ms (Samples={len(latencies)})"
                         print(log_msg)
                         
@@ -390,20 +394,46 @@ class QuizServer:
                             "min_latency_ms": min_lat,
                             "samples": len(latencies)
                         }
-                        
-                        # Clear latencies for the next question if you want per-question stats
-                        # latencies.clear() 
                     else:
                         print(f"{p_name}: No latency data this round.")
+                
+                # Compute fairness metrics if we have data from clients
+                if client_avgs:
+                    max_latency = max(client_avgs)
+                    min_latency = min(client_avgs)
+                    fairness_gap = max_latency - min_latency
+                    overall_avg = sum(client_avgs) / len(client_avgs)
+                    normalized_variation = (fairness_gap / overall_avg) if overall_avg > 0 else 0
+                    
+                    fairness_data = {
+                        "max_latency": max_latency,
+                        "min_latency": min_latency,
+                        "fairness_gap": fairness_gap,
+                        "average_latency": overall_avg,
+                        "normalized_variation": normalized_variation
+                    }
+
+            # Print fairness metrics
+            if fairness_data:
+                print("\n--- Fairness Evaluation ---")
+                print(f"Fairness gap: {fairness_data['fairness_gap']:.2f} ms")
+                print(f"Average latency: {fairness_data['average_latency']:.2f} ms")
+                print(f"Normalized variation: {fairness_data['normalized_variation']:.4f}")
+                print("---------------------------\n")
 
             # Save to JSON
             if stats_to_save:
+                # Combine both stats into a single dictionary for saving
+                output_data = {
+                    "clients": stats_to_save,
+                    "fairness": fairness_data
+                }
                 docs_dir = Path(__file__).resolve().parents[1] / "docs"
                 docs_dir.mkdir(exist_ok=True)
                 perf_file = docs_dir / "performance.json"
                 try:
                     with open(perf_file, "w") as f:
-                        json.dump(stats_to_save, f, indent=4)
+                        json.dump(output_data, f, indent=4)
                 except Exception as e:
                     print(f"Error saving performance data: {e}")
 
